@@ -5,6 +5,7 @@ import "./Page3.css";
 export default function LoveLetter() {
   const [isOpen, setIsOpen] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const sendEmail = async () => {
     try {
@@ -12,9 +13,8 @@ export default function LoveLetter() {
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          name: "",
-          message:
-            "",
+          to_name: "",
+          message: "",
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
@@ -31,7 +31,15 @@ export default function LoveLetter() {
 
     if (!emailSent) {
       await sendEmail();
+
+      setTimeout(() => {
+        setShowMessage(true);
+      }, 2000);
     }
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -39,10 +47,13 @@ export default function LoveLetter() {
       <div className="envlope-wrapper">
         <div id="envelope" className={isOpen ? "open" : "close"}>
           <div className="front flap"></div>
+
           <div className="front pocket"></div>
 
           <div className="letter">
-            <div className="words line1">To: Crush 💖</div>
+            <div className="words line1">
+              To: Crush 💖
+            </div>
 
             <div className="words line2">
               Dear crush, you are so beautiful
@@ -66,12 +77,20 @@ export default function LoveLetter() {
       </div>
 
       <div className="reset">
-        <button onClick={handleOpen}>Open</button>
+        <button onClick={handleOpen}>
+          Open
+        </button>
 
-        <button onClick={() => setIsOpen(false)}>
+        <button onClick={handleClose}>
           Close
         </button>
       </div>
+
+      {showMessage && (
+        <p className="email-message">
+          📧 Check your email for a surprise 💖
+        </p>
+      )}
     </div>
   );
 }
