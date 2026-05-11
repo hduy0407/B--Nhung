@@ -1,0 +1,111 @@
+
+
+.sorry-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+  overflow: hidden;
+  padding: 20px;
+}
+
+.sorry-container {
+  text-align: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+.sorry-heart {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #ff4d6d;
+  transform: rotate(-45deg);
+  margin: 0 auto 35px;
+  animation: heartbeat 1s infinite;
+}
+
+.sorry-heart::before,
+.sorry-heart::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.sorry-heart::before {
+  top: -50px;
+  left: 0;
+}
+
+.sorry-heart::after {
+  left: 50px;
+  top: 0;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: rotate(-45deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+
+  100% {
+    transform: rotate(-45deg) scale(1);
+  }
+}
+
+.sorry-title {
+  color: #ff3366;
+  margin-bottom: 30px;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.3;
+}
+
+.sorry-button-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.sorry-button {
+  border: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+  min-width: 110px;
+}
+
+.sorry-button:hover {
+  transform: scale(1.08);
+}
+
+.yes-btn {
+  background: #ff4d6d;
+  color: white;
+}
+
+.no-btn {
+  background: white;
+  color: #ff4d6d;
+}
+
+@media (max-width: 480px) {
+  .sorry-button-container {
+    flex-direction: column;
+  }
+
+  .sorry-button {
+    width: 100%;
+  }
+}
